@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -58,6 +59,7 @@ public class SecurityConfig {
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(a -> a
                 .requestMatchers(publicEndpoints.toArray(String[]::new)).permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/hotels", "/api/hotels/**").permitAll()
                 // Every other endpoint (including all hotel, room, booking and logout)
                 // requires a valid JWT. Role-based gating is done via @PreAuthorize.
                 .anyRequest().authenticated())

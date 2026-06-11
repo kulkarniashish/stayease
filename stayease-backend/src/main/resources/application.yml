@@ -16,7 +16,7 @@ app:
     secret: ${JWT_SECRET:ZmFrZS1zZWNyZXQta2V5LWZvci1zdGF5ZWFzZS1jaGFuZ2UtbWUtaW4tcHJvZHVjdGlvbi0xMjM0NTY3OA==}
     expiration-ms: 86400000
   cors:
-    allowed-origins: http://localhost:5173,http://localhost:3000
+    allowed-origins: http://localhost:5173,http://localhost:3000,http://stay-ease.s3-website.ap-south-1.amazonaws.com
 springdoc:
   swagger-ui:
     path: /swagger-ui.html

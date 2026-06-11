@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
+import CONSTANTS from "../utils/constants";
 import { getHotelById } from "../services/hotelService";
 import { getAvailableRooms } from "../services/roomService";
 import { createBooking } from "../services/bookingService";
@@ -155,7 +156,11 @@ export default function HotelDetailPage() {
         <Alert severity="info">No rooms available</Alert>
       )}
       {rooms.length > 0 && (
-        <AvailableRoomsTable rooms={rooms} onBook={bookRoom} />
+        <AvailableRoomsTable
+          rooms={rooms}
+          onBook={bookRoom}
+          canBook={auth.role === CONSTANTS.ROLES.GUEST || !auth.isAuthenticated}
+        />
       )}
       {selectedRoom && (
         <BookingDialog

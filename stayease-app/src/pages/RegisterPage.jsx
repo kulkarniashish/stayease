@@ -2,7 +2,7 @@ import { Container, Paper, TextField, Button, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { registerUser } from "../services/authService";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function RegisterPage() {
@@ -77,6 +77,12 @@ export default function RegisterPage() {
           <Button fullWidth variant="contained" type="submit" disabled={!isValid} sx={{ mt: 2 }}>
             Register
           </Button>
+          <Typography variant="body2" align="center" sx={{ mt: 2 }}>
+            Already have an account?{" "}
+            <Link to="/login" style={{ color: "#1976d2", textDecoration: "none", fontWeight: 500 }}>
+              Login
+            </Link>
+          </Typography>
         </form>
       </Paper>
     </Container>

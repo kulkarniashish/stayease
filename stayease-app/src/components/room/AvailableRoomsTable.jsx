@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 
-export default function AvailableRoomsTable({ rooms, onBook }) {
+export default function AvailableRoomsTable({ rooms, onBook, canBook = true }) { 
   return (
     <Table>
       <TableHead>
@@ -29,6 +29,7 @@ export default function AvailableRoomsTable({ rooms, onBook }) {
             <TableCell>{room.description}</TableCell>
             <TableCell>
               <Button
+                disabled={!canBook}
                 sx={{
                   backgroundColor: "#1976d2",
                   color: "#fff",

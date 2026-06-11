@@ -10,6 +10,7 @@ export default function ManagerDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [bookings, setBookings] = useState([]);
   const [rooms, setRooms] = useState([]);
+  const [error, setError] = useState(false);
 
   const loadData = async () => {
     try {
@@ -20,6 +21,7 @@ export default function ManagerDashboardPage() {
       setBookings(bookingsResult);
       setRooms(roomsResult);
     } catch {
+      setError(true);
       toast.error("Unable to load dashboard");
     } finally {
       setLoading(false);
@@ -49,22 +51,24 @@ export default function ManagerDashboardPage() {
         Manager Dashboard
       </Typography>
 
-      <Paper
-        sx={{
-          p: 2,
-          mb: 4,
-        }}
-      >
-        <Typography variant="h6" gutterBottom>
-          My Rooms
-        </Typography>
-        <RoomsTable
-          rooms={rooms}
-          onEdit={() => {}}
-          onDelete={() => {}}
-          onToggle={handleToggle}
-        />
-      </Paper>
+      {!error && (
+        <Paper
+          sx={{
+            p: 2,
+            mb: 4,
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            My Rooms
+          </Typography>
+            <RoomsTable
+              rooms={rooms}
+              onEdit={() => {}}
+              onDelete={() => {}}
+              onToggle={handleToggle}
+            />
+        </Paper>
+        )}
 
       <Paper sx={{ p: 2 }}>
         <Typography variant="h6" gutterBottom>
